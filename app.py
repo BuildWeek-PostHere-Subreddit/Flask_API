@@ -1,38 +1,30 @@
-from flask import Flask, render_template, request,  url_for, redirect, jsonify
+# from flask import Flask, render_template, request,  url_for, redirect, jsonify
+
+import json
+import pandas as pd
 
 
-app = Flask(__name__)
-
-def request_data():
-    """Gets data in JSON format and runs it through the model.
-       :return: JSON file.
-    """
-    reddit = request.get_json()
-
-    # Non-default values. Needs to have user input or breaks the app.
-    # TODO variables for title and self_post
-    title = reddit['title'] # Example
-    self_post = reddit['self_post'] # Example
-    # TODO Combine into a single text. 
-
-    # No defaulted values. 
-
-    features = {'title': title, 'self_post': self_post}
-
-    # Converts the data into a DataFrame object.
-    predict_data = pd.DataFrame(features, index=[1])
-
-    # Using pickle file with encode/categorize the data. 
-    # TODO Needs to be changed to corrected variables and pickle object name. 
-    features_encoder = encoder.transform(predict_data) 
-
-    # Feeds the data into the model.
-    # TODO Needs to be 
-    prediction = model.predict(features_encoder)
-
-    # Returns prediction in a JSON format and within, a float.
-    return jsonify({'prediction': prediction[0]}) # TODO LIST OF SUBREDDITS
+# app = Flask(__name__)
+data = {
+    "title": "some text",
+    "self_post": "some text"
+}
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+with open("dummy.json", "w") as reddit:
+    json.dump(data, reddit)
+ 
+
+# TODO Return with JSON using jsonify. 
+def request_data(x):
+    """Return: JSON file"""
+    json_data = [data]
+    df = pd.DataFrame.from_dict(json_data, orient='columns')
+    
+    return df.to_json(orient='split')
+
+example = request_data(reddit)
+print(example)
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
