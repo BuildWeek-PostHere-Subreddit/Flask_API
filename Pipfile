@@ -7,11 +7,7 @@ verify_ssl = true
 
 [packages]
 flask = "*"
-requests = "*"
-sklearn = "*"
-spacy = "*"
 gunicorn = "*"
-praw = "*"
 
 [requires]
 python_version = "3.7"
