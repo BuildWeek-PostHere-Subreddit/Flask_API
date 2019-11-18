@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title> Post Here </title>
+
+        <link rel="stylesheet" href="https://unpkg.com/picnic">
+    </head>
+
+    <body>
+    {% block content %}
+        <p>Enter a number to see the corresponding subreddit data</p>
+        <form action="/subreddit" method="post">
+            <input type="text" name="id" placeholder="enter a number">
+            <input type="submit" value="Let's look!">
+        </form>
+    {% endblock %}
+    </body>
+</html>
