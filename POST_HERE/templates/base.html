@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <title> Post Here </title>
-
-        <link rel="stylesheet" href="https://unpkg.com/picnic">
-    </head>
-
     <body>
     {% block content %}
-        <p><a href="/subreddit">Click here</a> to get a JSON file with random subreddit data!</p>
+        <p><a href="/subreddit">Click here</a> to get a JSON file with random subreddit data!</p><br>
+        <br>
+        <p>Click the button below to get a list of subreddits based on the (length of) a username!</p><br>
+        <form action="/username" method="post">
+            <input type="text" name="user_name" placeholder="Username to test">
+            <input type="submit" value="Test!">
+        </form>
     {% endblock %}
     </body>
 </html>
