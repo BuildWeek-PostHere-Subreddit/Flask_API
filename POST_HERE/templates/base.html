@@ -12,11 +12,7 @@
 
     <body>
     {% block content %}
-        <p>Enter a list of numbers to see the corresponding subreddit data</p>
-        <form action="/subreddit" method="post">
-            <input type="text" name="id" placeholder="enter some numbers">
-            <input type="submit" value="Let's look!">
-        </form>
+        <p><a href="/subreddit">Click here</a> to get a JSON file with random subreddit data!</p>
     {% endblock %}
     </body>
 </html>
