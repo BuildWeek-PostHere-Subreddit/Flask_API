@@ -8,6 +8,9 @@ verify_ssl = true
 [packages]
 flask = "*"
 gunicorn = "*"
+python-dotenv = "*"
+pymongo = {extras = ["srv"],version = "*"}
+python-decouple = "*"
 
 [requires]
 python_version = "3.7"
