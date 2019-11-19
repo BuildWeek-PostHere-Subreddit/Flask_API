@@ -2,7 +2,6 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from .functions import list_subreddits
 from .models import Post_Model, Username_Model
-import numpy as np
 import pymongo
 import random
 
