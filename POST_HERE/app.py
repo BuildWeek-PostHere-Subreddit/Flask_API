@@ -24,6 +24,7 @@ def create_app():
             desc_dict = {}
             desc_dict['name'] = description['name']
             desc_dict['url'] = 'https://www.reddit.com' + description['url']
+            desc_dict['description'] = description['description']
             desc_dict['subscribers'] = description['subscribers']
             desc_dict['active_accounts'] = description['active_accounts']
             desc_dict['score'] = description['score']
