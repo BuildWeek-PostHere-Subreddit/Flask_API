@@ -7,7 +7,7 @@ def jsonConversion(json_obj):
     title = json_obj["title"]
     text = json_obj["text"]
     if json_obj["link"] is False:
-        string = title + " " + text
+        string = " ".join([title, text])
     else:
         string = title
     return [string]
