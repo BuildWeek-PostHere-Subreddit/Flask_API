@@ -12,9 +12,9 @@
 
     <body>
     {% block content %}
-        <p>Enter a number to see the corresponding subreddit data</p>
+        <p>Enter a list of numbers to see the corresponding subreddit data</p>
         <form action="/subreddit" method="post">
-            <input type="text" name="id" placeholder="enter a number">
+            <input type="text" name="id" placeholder="enter some numbers">
             <input type="submit" value="Let's look!">
         </form>
     {% endblock %}
