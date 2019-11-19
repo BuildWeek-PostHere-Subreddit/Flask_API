@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, url_for, redirect, jsonify
+from flask_cors import CORS
 from .functions import list_subreddits
 from .models import Post_Model, Username_Model
 import pymongo
@@ -11,6 +12,7 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    CORS(app) # Allow CORS for all domains on all routes
 
     @app.route('/')
     def index():
