@@ -10,7 +10,7 @@ class Model:
 
     def predict(self):
         """Returns 10 random subreddits"""
-        return [random.randint(1,1000) for _ in range(self.output)]
+        return [random.randint(1, 1000) for _ in range(self.output)]
 
 
 class Post_Model(Model):
@@ -26,6 +26,6 @@ class Username_Model(Model):
 
     def predict(self):
         if len(self.name) < 10:
-            return [random.randint(1,500) for _ in range(self.output)]
+            return [random.randint(1, 500) for _ in range(self.output)]
         else:
-            return [random.randint(501,1000) for _ in range(self.output)]
+            return [random.randint(501, 1000) for _ in range(self.output)]
