@@ -2,12 +2,26 @@ from decouple import config
 import pymongo
 
 
+def jsonConversion(json_obj):
+    """Return: string combination of title and text."""
+    title = json_obj["title"]
+    text = json_obj["text"]
+    if json_obj["link"] is False:
+        string = " ".join([title, text])
+    else:
+        string = title
+    return [string]
+
+
 def get_subreddit_info(array, code):
-    """Function written by Matthew that gets subreddit information based on ID numbers"""
+    """
+    Function written by Matthew that gets
+    subreddit information based on ID numbers
+    """
     client = pymongo.MongoClient(code)
     db = client.sfw_db
-    data = [db.sfw_db.find({'sub_id':int(num)})[0] for num in array]
-    return(data)
+    data = [db.sfw_db.find({'sub_id': int(num)})[0] for num in array]
+    return (data)
 
 
 def list_subreddits(prediction):
