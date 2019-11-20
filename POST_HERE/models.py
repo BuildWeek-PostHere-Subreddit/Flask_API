@@ -15,7 +15,11 @@ class Model:
 
 class Post_Model(Model):
     """Placeholder model for predictions based on posts"""
-    pass
+    def predict(self, model_input):
+        if len(model_input) < 50:
+            return [random.randint(1, 500) for _ in range(self.output)]
+        else:
+            return [random.randint(501, 1000) for _ in range(self.output)]
 
 
 class Username_Model(Model):
