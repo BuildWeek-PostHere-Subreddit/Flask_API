@@ -2,7 +2,17 @@
 <html>
     <body>
     {% block content %}
-        <p><a href="/subreddit">Click here</a> to get a JSON file with random subreddit data!</p><br>
+        <p>Click the button below to get a list of subreddits based on a sample Reddit post!</p><br>
+        <form action="/subreddit" method="post">
+            <input type="text" name="title" placeholder="Title of post">
+            <input type="text" name="text" placeholder="Content of post">
+            <p>Is this a link post?</p>
+            <select name="link">
+                <option value="True">Yes</option>
+                <option value="False">No</option>
+            </select>
+            <input type="submit" value="Let's go!">
+        </form>
         <br>
         <p>Click the button below to get a list of subreddits based on the (length of) a username!</p><br>
         <form action="/username" method="post">
