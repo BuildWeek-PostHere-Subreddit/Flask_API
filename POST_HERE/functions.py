@@ -22,9 +22,8 @@ def transform_get(text, loadcv, loaddf):
     inputdata = transform.todense()
     dist_matrix  = cosine_similarity(loaddf, inputdata)
     results = pd.DataFrame(dist_matrix)
-    sorte = results[results[0] > .4]
 
-    return sorte[0].sort_values(ascending=False).index.tolist()
+    return results[0].sort_values(ascending=False)[:10].index.tolist()
 
 
 def get_subreddit_info(array, code):
