@@ -1,5 +1,8 @@
 from decouple import config
+import joblib
+import pandas as pd
 import pymongo
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 def jsonConversion(json_obj):
@@ -13,9 +16,20 @@ def jsonConversion(json_obj):
     return [string]
 
 
+def transform_get(text, loadcv, loaddf):
+    """Function written by Matthew/Johana"""
+    transform = loadcv.transform(text)
+    inputdata = transform.todense()
+    dist_matrix  = cosine_similarity(loaddf, inputdata)
+    results = pd.DataFrame(dist_matrix)
+    sorte = results[results[0] > .4]
+
+    return sorte[0].sort_values(ascending=False).index.tolist()
+
+
 def get_subreddit_info(array, code):
     """
-    Function written by Matthew that gets
+    Function written by Matthew/Johana that gets
     subreddit information based on ID numbers
     """
     client = pymongo.MongoClient(code)

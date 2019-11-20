@@ -12,6 +12,9 @@ python-dotenv = "*"
 pymongo = {extras = ["srv"],version = "*"}
 python-decouple = "*"
 flask-cors = "*"
+scikit-learn = "*"
+pandas = "*"
+joblib = "*"
 
 [requires]
 python_version = "3.7"
