@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_cors import CORS
-from .functions import jsonConversion, list_subreddits
+from .functions import jsonConversion, transform_get, list_subreddits
+import joblib
 from .models import Post_Model, Username_Model
 import pymongo
 
@@ -14,6 +15,9 @@ def create_app():
     CORS(app)
     # Allow CORS from the above domain on all routes
 
+    loadcv = joblib.load('cv3.joblib')
+    loaddf = joblib.load('cvdf3.joblib')
+
     @app.route('/')
     def index():
         return render_template('base.html')
@@ -22,11 +26,10 @@ def create_app():
     def get_subreddits():
         submission = request.get_json(force=True)
         model_input = jsonConversion(submission)
-        model = Post_Model()
-        prediction = model.predict(model_input)
-        output = list_subreddits(prediction)
+        model_output = transform_get(model_input, loadcv, loaddf)
+        subreddit_list = list_subreddits(model_output)
 
-        return jsonify(output)  
+        return jsonify(subreddit_list)
 
     @app.route('/subreddit_test', methods=['POST'])
     def get_subreddits_test():
@@ -35,11 +38,10 @@ def create_app():
                                     request.values['link']])
         submission = {"title": title, "text": text, "link": link}
         model_input = jsonConversion(submission)
-        model = Post_Model()
-        prediction = model.predict(model_input)
-        output = list_subreddits(prediction)
+        model_output = transform_get(model_input, loadcv, loaddf)
+        subreddit_list = list_subreddits(model_output)
 
-        return jsonify(output)
+        return jsonify(subreddit_list)
 
     @app.route('/username', methods=['POST'])
     def from_username(name=None):
