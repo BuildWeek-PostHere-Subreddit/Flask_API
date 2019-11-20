@@ -20,6 +20,16 @@ def create_app():
 
     @app.route('/subreddit', methods=['POST'])
     def get_subreddits():
+        submission = request.get_json(force=True)
+        model_input = jsonConversion(submission)
+        model = Post_Model()
+        prediction = model.predict(model_input)
+        output = list_subreddits(prediction)
+
+        return jsonify(output)  
+
+    @app.route('/subreddit_test', methods=['POST'])
+    def get_subreddits_test():
         title, text, link = sorted([request.values['title'],
                                     request.values['text'],
                                     request.values['link']])
