@@ -15,8 +15,9 @@ def create_app():
     CORS(app)
     # Allow CORS from the above domain on all routes
 
-    loadcv = joblib.load('cv3.joblib')
-    loaddf = joblib.load('cvdf3.joblib')
+    loadcv = joblib.load('tf.joblib')
+    loaddf = joblib.load('tfarray.joblib')
+    loaddf = loaddf.todense()
 
     @app.route('/')
     def index():
