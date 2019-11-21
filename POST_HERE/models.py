@@ -1,4 +1,4 @@
-"""Contains code for the machine learning models"""
+"""Dummy models made for testing purposes"""
 
 import random
 

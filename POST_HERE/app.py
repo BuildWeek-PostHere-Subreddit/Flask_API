@@ -1,3 +1,5 @@
+"""app factory"""
+
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_cors import CORS
@@ -25,6 +27,7 @@ def create_app():
 
     @app.route('/subreddit', methods=['POST'])
     def get_subreddits():
+        """this is the route the Frontend makes requests to"""
         submission = request.get_json(force=True)
         model_input = jsonConversion(submission)
         model_output = transform_get(model_input, loadcv, loaddf)
@@ -34,10 +37,11 @@ def create_app():
 
     @app.route('/subreddit_test', methods=['POST'])
     def get_subreddits_test():
+        """this route lets us test the model directly in the Flask app"""
         title, text, link = sorted([request.values['title'],
                                     request.values['text'],
                                     request.values['link']])
-        submission = {"title": title, "text": text, "link": link}
+        submission = {"title": title, "text": text, "link": True if link == 'T' else False}
         model_input = jsonConversion(submission)
         model_output = transform_get(model_input, loadcv, loaddf)
         subreddit_list = list_subreddits(model_output)
@@ -46,6 +50,7 @@ def create_app():
 
     @app.route('/username', methods=['POST'])
     def from_username(name=None):
+        """route made in preparation for the possible stretch goal"""
         name = name or request.values['user_name']
         model = Username_Model(name=name)
         prediction = model.predict()
