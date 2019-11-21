@@ -13,14 +13,14 @@ def jsonConversion(json_obj):
         string = " ".join([title, text])
     else:
         string = title
-    return [string]
+    return string
 
 
 def transform_get(text, loadcv, loaddf):
     """Function written by Matthew/Johana"""
-    transform = loadcv.transform(text)
+    transform = loadcv.transform([text])
     inputdata = transform.todense()
-    dist_matrix  = cosine_similarity(loaddf, inputdata)
+    dist_matrix = cosine_similarity(loaddf, inputdata)
     results = pd.DataFrame(dist_matrix)
 
     return results[0].sort_values(ascending=False)[:10].index.tolist()
