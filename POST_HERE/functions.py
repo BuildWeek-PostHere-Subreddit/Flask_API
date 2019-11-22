@@ -1,3 +1,5 @@
+"""Functions for the rest of the app"""
+
 from decouple import config
 import joblib
 import pandas as pd
